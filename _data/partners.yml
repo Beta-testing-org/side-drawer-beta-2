@@ -1,0 +1,10 @@
+eyebrow: "Community Support"
+title: "Our Service Partners & Patrons"
+intro: "The individuals and organizations whose partnership and generosity help make our club's projects possible."
+drawer_label: "Our Partners & Patrons"
+
+partners:
+  - name: "Add Your First Partner"
+    logo: ""
+    url: ""
+    description: "This is a placeholder entry — replace it from Decap CMS: Site Settings → Partners & Patrons."

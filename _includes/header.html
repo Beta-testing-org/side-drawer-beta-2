@@ -1,0 +1,40 @@
+<header class="site-nav">
+  <div class="nav-inner">
+
+    <a href="{{ '/' | relative_url }}" class="brand">
+      <span>
+        Rotary E-Club of All Star CAMANAVA
+        <small>Service Above Self</small>
+      </span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="nav-links" id="navLinks">
+        <li>
+          <a href="{{ '/' | relative_url }}">Home</a>
+        </li>
+        <li>
+          <a href="{{ '/about/' | relative_url }}">About</a>
+        </li>
+        <li>
+          <a href="{{ '/services/' | relative_url }}">Services</a>
+        </li>
+        <li>
+          <a href="{{ '/contact/' | relative_url }}">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >
+      <span></span>
+    </button>
+
+  </div>
+</header>

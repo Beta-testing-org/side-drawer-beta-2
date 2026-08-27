@@ -1,0 +1,72 @@
+---
+layout: default
+title: "Our Service Partners & Patrons — Rotary E-Club of All Star CAMANAVA"
+description: "Meet the organizations and individuals partnering with Rotary E-Club of All Star CAMANAVA."
+permalink: /partners/
+---
+
+<section class="block">
+  <div class="container">
+
+    <div class="block-head">
+      {% if site.data.partners.eyebrow %}
+        <span class="eyebrow">
+          {{ site.data.partners.eyebrow }}
+        </span>
+      {% endif %}
+
+      {% if site.data.partners.title %}
+        <h2>
+          {{ site.data.partners.title | markdownify }}
+        </h2>
+      {% endif %}
+
+      {% if site.data.partners.intro %}
+        <div>
+          {{ site.data.partners.intro | markdownify }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if site.data.partners.partners %}
+      <div class="partners-grid">
+
+        {% for partner in site.data.partners.partners %}
+
+          {% if partner.url %}
+            <a href="{{ partner.url }}" class="partner-card" target="_blank" rel="noopener noreferrer">
+          {% else %}
+            <div class="partner-card">
+          {% endif %}
+
+            <span class="partner-logo">
+              {% if partner.logo %}
+                <img src="{{ partner.logo | relative_url }}" alt="{{ partner.name }}" loading="lazy">
+              {% else %}
+                <span class="partner-logo-fallback">
+                  {{ partner.name | slice: 0, 1 }}
+                </span>
+              {% endif %}
+            </span>
+
+            {% if partner.name %}
+              <h3>{{ partner.name }}</h3>
+            {% endif %}
+
+            {% if partner.description %}
+              <p>{{ partner.description | markdownify }}</p>
+            {% endif %}
+
+          {% if partner.url %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+    {% endif %}
+
+  </div>
+</section>

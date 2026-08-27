@@ -1,0 +1,73 @@
+<!-- pulls latest posts Individual bulletin -->
+<div class="card bulletin-card">
+
+  <div class="bulletin-head">
+    <h3>Recent Posts &amp; Bulletins</h3>
+    <span class="badge">Latest</span>
+  </div>
+
+  <ul class="bulletin-list">
+
+    {% for post in site.posts limit:4 %}
+
+      <li>
+
+        <div class="bulletin-ico">
+          📌
+        </div>
+
+        <div class="bulletin-text">
+
+          <strong>
+            <a href="{{ post.url | relative_url }}">
+              {{ post.title }}
+            </a>
+          </strong>
+
+          <span>
+            {{ post.date | date: "%B %d, %Y" }} —
+            {{ post.excerpt | strip_html | truncatewords: 12 }}
+          </span>
+
+        </div>
+
+      </li>
+
+    {% else %}
+
+      <li>
+
+        <div class="bulletin-ico">
+          📌
+        </div>
+
+        <div class="bulletin-text">
+
+          <strong>
+            No bulletins yet
+          </strong>
+
+          <span>
+            New club bulletins and announcements will appear here.
+          </span>
+
+        </div>
+
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+  <div style="margin-top:24px;">
+
+    <a
+      href="{{ '/bulletins/' | relative_url }}"
+      class="btn btn-solid"
+    >
+      View All Bulletins
+    </a>
+
+  </div>
+
+</div>

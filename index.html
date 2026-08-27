@@ -1,0 +1,324 @@
+---
+layout: default
+title: "Rotary E-Club of All Star CAMANAVA"
+description: "Rotary E-Club of All Star CAMANAVA — service above self. Bulletins, announcements, projects, club history and more."
+permalink: /
+---
+
+{% include hero.html %}
+
+<section class="block">
+  <div class="container">
+
+    <div class="gear-divider">
+      <svg
+        class="gear"
+        width="20"
+        height="20"
+        viewBox="0 0 100 100"
+        aria-hidden="true"
+      >
+        <path
+          fill="#049393"
+          d="M50 6l4 10 10-4 0 11 11 3-6 9 6 9-11 3 0 11-10-4-4 10-4-10-10 4 0-11-11-3 6-9-6-9 11-3 0-11 10 4z"
+        />
+      </svg>
+
+      <span class="eyebrow">
+        Club Bulletin
+      </span>
+    </div>
+
+
+    <div class="home-grid">
+
+      {% include bulletin-card.html %}
+
+
+      <div class="side-stack">
+
+          <div class="stat-card">
+            {% assign featured_post = site.posts | where: "url", site.data.site.featured_post.url | first %}
+            {% if site.data.site.featured_post.enabled and featured_post %}
+            {% if site.data.site.featured_post.thumbnail %}
+              <a href="{{ featured_post.url | relative_url }}" class="featured-post-image">
+                <img
+                  src="{{ site.data.site.featured_post.thumbnail | relative_url }}"
+                  alt="{{ featured_post.title | escape }}"
+                >
+              </a>
+            {% endif %}
+              <div class="num">
+                {{ site.data.site.featured_post.number }}
+              </div>
+              <div class="lbl">
+                <a href="{{ featured_post.url | relative_url }}" class="featured-post-title">
+                  {{ site.data.site.featured_post.label | markdownify }}
+                </a>
+              </div>
+              <a href="{{ featured_post.url | relative_url }}" class="featured-post-link">
+                Read More
+              </a>
+            {% else %}
+              <div class="num">
+                {{ site.data.site.featured_post.number }}
+              </div>
+              <div class="lbl">
+                {{ site.data.site.featured_post.label | markdownify }}
+              </div>
+            {% endif %}
+          </div>
+
+        <div class="card">
+
+        {% if site.data.featured_youtube.enabled %}
+
+        {% if site.data.featured_youtube.title %}
+          <h4 class="explore-title">
+            {{ site.data.featured_youtube.title }}
+          </h4>
+        {% endif %}
+        {% if site.data.featured_youtube.thumbnail %}
+          <button
+            type="button"
+            class="featured-youtube-thumbnail"
+            data-youtube-url="{{ site.data.featured_youtube.url | escape }}"
+            aria-label="Play {{ site.data.featured_youtube.video_title | default: 'featured video' | escape }}"
+          >
+            <img
+              src="{{ site.data.featured_youtube.thumbnail | relative_url }}"
+              alt="{{ site.data.featured_youtube.video_title | default: 'Featured YouTube video' | escape }}"
+            >
+            <span class="featured-youtube-play">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M8 5v14l11-7L8 5z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </button>
+        {% endif %}
+        {% if site.data.featured_youtube.video_title %}
+          <h5 class="featured-youtube-title">
+            {{ site.data.featured_youtube.video_title }}
+          </h5>
+        {% endif %}
+        {% if site.data.featured_youtube.url %}
+          <a
+            href="{{ site.data.featured_youtube.url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-solid featured-youtube-button"
+          >
+            {{ site.data.featured_youtube.button_text | default: "Watch on YouTube →" }}
+          </a>
+        {% endif %}
+
+        {% else %}
+
+        <h4 class="explore-title">
+          Explore the Club
+        </h4>
+        <ul class="mini-list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z"
+                stroke="#049393"
+                stroke-width="1.8"
+              />
+              <path
+                d="M13 3v5h5"
+                stroke="#049393"
+                stroke-width="1.8"
+              />
+            </svg>
+            Bulletins & announcements
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 6h16M4 12h16M4 18h10"
+                stroke="#049393"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+            Club blog & news
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                stroke="#049393"
+                stroke-width="1.8"
+              />
+              <path
+                d="M12 7v5l3 2"
+                stroke="#049393"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+            Club history archive
+          </li>
+        </ul>
+
+        {% endif %}
+
+        </div>        
+        
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="block tight alt-surface">
+
+  <div class="container">
+
+    <div class="block-head">
+
+      <span class="eyebrow">
+        Why It Matters
+      </span>
+
+      <h2>
+        A club built on fellowship and service
+      </h2>
+
+      <p>
+        Every post, project and bulletin reflects our members' commitment to the four communities we call home.
+      </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+      <a href="{{ '/files/' | relative_url }}" class="feature feature-link">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M4 5a2 2 0 012-2h5l2 2h5a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"
+              stroke="#049393"
+              stroke-width="1.7"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M4 8h16"
+              stroke="#049393"
+              stroke-width="1.7"
+            />
+          </svg>
+        </div>
+        <h4>
+          E-Bulletin Files
+        </h4>
+        <p>
+          Browse our collection of club e-bulletins, including PDF and interactive flipbook editions.
+        </p>
+      </a>
+
+
+      <div class="feature">
+
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"
+              stroke="#049393"
+              stroke-width="1.7"
+            />
+          </svg>
+        </div>
+
+        <h4>
+          Service Projects
+        </h4>
+
+        <p>
+          Community-driven initiatives that respond to real needs across CAMANAVA and beyond.
+        </p>
+
+      </div>
+
+
+      <a href="{{ '/about/' | relative_url }}" class="feature feature-link">
+
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M4 19.5A2.5 2.5 0 016.5 17H20"
+              stroke="#049393"
+              stroke-width="1.7"
+            />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"
+              stroke="#049393"
+              stroke-width="1.7"
+            />
+          </svg>
+        </div>
+
+        <h4>
+          Club History
+        </h4>
+
+        <p>
+          An archive of postings, milestones and memories from years of service.
+        </p>
+
+      </a>
+
+    </div>
+
+    <!-- ============================================================
+        YOUTUBE LIGHTBOX
+        ============================================================ -->
+
+    <div
+      class="youtube-lightbox"
+      id="youtube-lightbox"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Featured YouTube video"
+    >
+      <div class="youtube-lightbox-backdrop" data-youtube-close></div>
+
+      <div class="youtube-lightbox-content">
+
+        <button
+          type="button"
+          class="youtube-lightbox-close"
+          data-youtube-close
+          aria-label="Close video"
+        >
+          &times;
+        </button>
+
+        <div class="youtube-lightbox-video">
+          <iframe
+            id="youtube-lightbox-iframe"
+            src=""
+            title="Featured YouTube video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

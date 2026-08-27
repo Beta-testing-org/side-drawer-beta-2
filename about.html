@@ -1,0 +1,128 @@
+---
+layout: default
+title: "About Us — Rotary E-Club of All Star CAMANAVA"
+description: "Learn about Rotary E-Club of All Star CAMANAVA, our history, pillars, and community service mission."
+permalink: /about/
+---
+
+<section class="block about-section">
+  <div class="container">
+    <div class="about-hero">
+
+      <div>
+        <span class="eyebrow">
+          <span class="dot"></span>
+          {{ site.data.about.eyebrow }}
+        </span>
+
+        <h2 class="about-title">
+          {{ site.data.about.title }}
+        </h2>
+
+        <div class="about-intro">
+          {{ site.data.about.intro | markdownify }}
+        </div>
+
+        {% if site.data.about.quote != nil and site.data.about.quote != "" %}
+          <div class="quote-block">
+            {{ site.data.about.quote | markdownify }}
+          </div>
+        {% endif %}        
+
+      </div>
+
+      <!--
+      <div class="pillar-row">
+        <div class="pillar">
+          <div class="letter">S</div>
+          <div class="word">Service</div>
+        </div>
+
+        <div class="pillar">
+          <div class="letter">F</div>
+          <div class="word">Fellowship</div>
+        </div>
+
+        <div class="pillar">
+          <div class="letter">I</div>
+          <div class="word">Integrity</div>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </div>
+</section>
+
+<section class="block alt-surface">
+  <div class="container">
+    <div class="block-head">
+      {% if site.data.about.history.section_label %}
+        <span class="eyebrow">
+          {{ site.data.about.history.section_label }}
+        </span>
+      {% endif %}
+      {% if site.data.about.history.section_title %}
+        <h2>
+          {{ site.data.about.history.section_title }}
+        </h2>
+      {% endif %}
+      {% if site.data.about.history.section_description %}
+        <div>
+          {{ site.data.about.history.section_description | markdownify }}
+        </div>
+      {% endif %}
+    </div>
+    {% if site.data.about.history.milestones %}
+      <div class="history-track">
+        {% for milestone in site.data.about.history.milestones %}
+          <div class="history-item">
+            <div class="history-dot">
+              {{ milestone.number }}
+            </div>
+            <div class="history-content">
+              {% if milestone.title %}
+                <h4>
+                  {{ milestone.title }}
+                </h4>
+              {% endif %}
+              {% if milestone.description %}
+                <div>
+                  {{ milestone.description | markdownify }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="block tight">
+  <div class="container">
+    {% if site.data.about.feature_cards %}
+      <div class="feature-grid">
+        {% for card in site.data.about.feature_cards %}
+          <div class="feature">
+            {% if card.icon %}
+              <div class="icon">
+                {{ card.icon }}
+              </div>
+            {% endif %}
+            {% if card.title %}
+              <h4>
+                {{ card.title }}
+              </h4>
+            {% endif %}
+            {% if card.description %}
+              <div>
+                {{ card.description | markdownify }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

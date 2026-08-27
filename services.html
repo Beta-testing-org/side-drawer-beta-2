@@ -1,0 +1,77 @@
+---
+layout: default
+title: "Services & Features — Rotary E-Club of All Star CAMANAVA"
+description: "Discover what Rotary E-Club of All Star CAMANAVA offers to its members and the community."
+permalink: /services/
+---
+
+<section class="block">
+  <div class="container">
+
+    <div class="block-head">
+      {% if site.data.services.eyebrow %}
+        <span class="eyebrow">
+          {{ site.data.services.eyebrow }}
+        </span>
+      {% endif %}
+
+      {% if site.data.services.title %}
+        <h2>
+          {{ site.data.services.title | markdownify }}
+        </h2>
+      {% endif %}
+
+      {% if site.data.services.intro %}
+        <div>
+          {{ site.data.services.intro | markdownify }}
+        </div>
+      {% endif %}
+    </div>
+
+
+    {% if site.data.services.services %}
+      <div class="services-grid">
+
+        {% for service in site.data.services.services %}
+
+          {% if service.url %}
+            <a href="{{ service.url }}" class="service-card">
+          {% else %}
+            <div class="service-card">
+          {% endif %}
+
+            <span class="service-num">
+              {{ forloop.index | prepend: "00" | slice: -2, 2 }}
+            </span>
+
+            {% if service.icon %}
+              <span class="service-emoji">
+                {{ service.icon }}
+              </span>
+            {% endif %}
+
+            {% if service.title %}
+              <h3>
+                {{ service.title }}
+              </h3>
+            {% endif %}
+
+            {% if service.description %}
+              <div>
+                {{ service.description | markdownify }}
+              </div>
+            {% endif %}
+
+          {% if service.url %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+    {% endif %}
+
+  </div>
+</section>

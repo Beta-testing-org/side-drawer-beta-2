@@ -1,0 +1,501 @@
+backend:
+  name: github
+  repo: allstarcamanava/allstarcamanava.github.io
+  branch: main
+  use_graphql: true
+  base_url: https://allstarcamanava-decap-oauth.jemuel-a-pilapil.workers.dev
+  auth_endpoint: /auth
+
+publish_mode: editorial_workflow
+show_preview_links: true
+display_url: https://www.allstarcamanava.org
+logo_url: https://allstarcamanava.netlify.app/uploads/logo.jpg
+
+media_folder: "assets/images/bulletins"
+public_folder: "/assets/images/bulletins"
+
+collections:
+  - name: "posts"
+    label: "Bulletins"
+    label_singular: "Bulletin"
+    folder: "_posts/"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "select"
+        default: "bulletin"
+        options:
+          - label: "Standard Bulletin"
+            value: "bulletin"
+          - label: "Full-Width Bulletin"
+            value: "bulletin-full"
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        required: false
+        date_format: "YYYY-MM-DD"
+        time_format: false
+
+      - label: "Category"
+        name: "categories"
+        widget: "select"
+        options:
+          - "Service Projects"
+          - "Announcement"
+          - "Event"
+          - "Club Bulletin"
+          - "Other"
+        default: "Service Projects"
+
+      - label: "Permalink"
+        name: "permalink"
+        widget: "string"
+        required: false
+        hint: "Optional. Leave blank to use the default post URL."
+
+      - label: "Featured Image"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Post Image"
+        name: "post_image"
+        widget: "image"
+        required: false
+        hint: "Optional. This image appears only inside the individual bulletin page."        
+
+      - label: "Image Alt Text"
+        name: "image_alt"
+        widget: "string"
+        required: false
+
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        allow_add: true
+        allow_remove: true
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
+          required: false
+          media_folder: "/assets/images/bulletins"
+          public_folder: "/assets/images/bulletins"
+
+      - label: "Custom Embed Code"
+        name: "custom_embed"
+        widget: "code"
+        required: false
+        default_language: "html"
+        allow_language_selection: false
+        output_code_only: true
+        hint: "Optional. Paste the embed code here."
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+  - name: "site"
+    label: "Site Settings"
+    description: "Manage the homepage hero section."
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "_data/site.yml"
+        fields:
+
+          - label: "Hero Image"
+            name: "hero_image"
+            widget: "image"
+            required: false
+
+          - label: "Eyebrow"
+            name: "hero_eyebrow"
+            widget: "string"
+            required: false
+
+          - label: "Heading - First Line"
+            name: "hero_title_line1"
+            widget: "string"
+            required: false
+
+          - label: "Heading - Emphasis"
+            name: "hero_title_emphasis"
+            widget: "string"
+            required: false
+            hint: "This text appears in italic/emphasis styling."
+
+          - label: "Heading - Second Line"
+            name: "hero_title_line2"
+            widget: "string"
+            required: false
+
+          - label: "Description"
+            name: "hero_description"
+            widget: "text"
+            required: false
+
+          - label: "Primary Button Text"
+            name: "hero_primary_text"
+            widget: "string"
+            required: false
+
+          - label: "Primary Button Link"
+            name: "hero_primary_link"
+            widget: "string"
+            required: false
+
+          - label: "Secondary Button Text"
+            name: "hero_secondary_text"
+            widget: "string"
+            required: false
+
+          - label: "Secondary Button Link"
+            name: "hero_secondary_link"
+            widget: "string"
+            required: false
+            
+          - label: "Green Gradient Overlay"
+            name: "hero_overlay"
+            widget: "boolean"
+            default: true
+            required: false
+            hint: "Adds the green/turquoise gradient overlay over the hero image. Turn off to display the hero image without the color overlay."
+            
+          - label: "Rotating Decorative Shape"
+            name: "hero_decoration"
+            widget: "boolean"
+            default: true
+            required: false
+            hint: "Displays the subtle rotating geometric decoration on the right side of the hero section. Turn off to hide the decoration."
+          - label: "Featured Post Card"
+            name: "featured_post"
+            widget: "object"
+            fields:
+              - label: "Enable Featured Post"
+                name: "enabled"
+                widget: "boolean"
+                default: false
+
+              - label: "Post URL"
+                name: "url"
+                widget: "string"
+                required: false
+
+              - label: "Number"
+                name: "number"
+                widget: "string"
+                required: false
+
+              - label: "Thumbnail"
+                name: "thumbnail"
+                widget: "image"
+                required: false
+                hint: "Optional. This image appears only in the Featured Post card on the homepage."
+
+              - label: "Label"
+                name: "label"
+                widget: "markdown"
+                required: false        
+      - name: "about"
+        label: "About Page"
+        file: "_data/about.yml"
+        fields:
+          - label: "Eyebrow"
+            name: "eyebrow"
+            widget: "string"
+            required: false
+
+          - label: "Title"
+            name: "title"
+            widget: "markdown"
+            required: false
+
+          - label: "Introduction"
+            name: "intro"
+            widget: "markdown"
+            required: false
+
+          - label: "Quote"
+            name: "quote"
+            widget: "markdown"
+            required: false                  
+
+          - label: "Club History"
+            name: "history"
+            widget: "object"
+            fields:
+
+              - label: "Section Label"
+                name: "section_label"
+                widget: "string"
+                required: false
+
+              - label: "Section Title"
+                name: "section_title"
+                widget: "string"
+                required: false
+
+              - label: "Section Description"
+                name: "section_description"
+                widget: "markdown"
+                required: false
+
+              - label: "Milestones"
+                name: "milestones"
+                widget: "list"
+                required: false
+                allow_add: true
+                allow_delete: true
+                fields:
+
+                  - label: "Number"
+                    name: "number"
+                    widget: "string"
+                    required: false
+
+                  - label: "Title"
+                    name: "title"
+                    widget: "string"
+                    required: false
+
+                  - label: "Description"
+                    name: "description"
+                    widget: "markdown"
+                    required: false
+
+          - label: "Feature Cards"
+            name: "feature_cards"
+            widget: "list"
+            required: false
+            allow_add: true
+            allow_delete: true
+            fields:
+
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+                required: false
+                hint: "You can use an emoji, such as 🌏, 🤝, or 📰."
+
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+
+              - label: "Description"
+                name: "description"
+                widget: "markdown"
+                required: false       
+
+      - name: "services"
+        label: "Services Page"
+        file: "_data/services.yml"
+        fields:        
+          - label: "Eyebrow"
+            name: "eyebrow"
+            widget: "string"
+            required: false       
+
+          - label: "Title"
+            name: "title"
+            widget: "markdown"
+            required: false                                
+
+          - label: "Introduction"
+            name: "intro"
+            widget: "markdown"
+            required: false
+
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            required: false
+            allow_add: true
+            allow_remove: true
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+                required: false
+
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+
+              - label: "Description"
+                name: "description"
+                widget: "markdown"
+                required: false       
+
+              - label: "Post URL"
+                name: "url"
+                widget: "string"
+                required: false
+                hint: "Optional. Enter the page URL this service card should open."                     
+
+      - name: "partners"
+        label: "Partners & Patrons"
+        file: "_data/partners.yml"
+        fields:
+          - label: "Eyebrow"
+            name: "eyebrow"
+            widget: "string"
+            required: false
+
+          - label: "Page Title"
+            name: "title"
+            widget: "markdown"
+            required: false
+
+          - label: "Introduction"
+            name: "intro"
+            widget: "markdown"
+            required: false
+
+          - label: "Edge Drawer Label"
+            name: "drawer_label"
+            widget: "string"
+            required: false
+            hint: "Short label shown on the hover-drawer tab (e.g. \"Our Partners & Patrons\")."
+
+          - label: "Partners"
+            name: "partners"
+            widget: "list"
+            required: false
+            allow_add: true
+            allow_delete: true
+            summary: "{{name}}"
+            fields:
+              - label: "Name"
+                name: "name"
+                widget: "string"
+
+              - label: "Logo"
+                name: "logo"
+                widget: "image"
+                required: false
+                media_folder: "/assets/images/partners"
+                public_folder: "/assets/images/partners"
+                hint: "A square or circular logo works best — it's shown in a circle in both the drawer and the full page."
+
+              - label: "Website URL"
+                name: "url"
+                widget: "string"
+                required: false
+                hint: "Optional. If set, the partner's card links out to their site."
+
+              - label: "Description"
+                name: "description"
+                widget: "markdown"
+                required: false
+
+      - name: "featured_youtube"
+        label: "Featured YouTube Video"
+        file: "_data/featured_youtube.yml"
+        fields:
+
+          - label: "Enable Featured YouTube"
+            name: "enabled"
+            widget: "boolean"
+            default: false
+            required: false
+
+          - label: "Card Title"
+            name: "title"
+            widget: "string"
+            default: "Featured Video"
+            required: false
+
+          - label: "Video Title"
+            name: "video_title"
+            widget: "string"
+            required: false
+
+          - label: "YouTube URL"
+            name: "url"
+            widget: "string"
+            required: false
+            hint: "Paste the full YouTube video URL."
+
+          - label: "Thumbnail"
+            name: "thumbnail"
+            widget: "image"
+            required: false
+
+          - label: "Button Text"
+            name: "button_text"
+            widget: "string"
+            default: "Watch on YouTube →"
+            required: false   
+                         
+      - name: "e_bulletins"
+        label: "E-Bulletin Files"
+        file: "_data/e_bulletins.yml"
+        fields:
+
+          - label: "E-Bulletins"
+            name: "bulletins"
+            widget: "list"
+            required: false
+            allow_add: true
+            allow_delete: true
+            fields:
+
+              - label: "Title"
+                name: "title"
+                widget: "string"
+
+              - label: "Date"
+                name: "date"
+                widget: "datetime"
+                required: false
+                date_format: "YYYY-MM-DD"
+                time_format: false
+
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options:
+                  - label: "PDF"
+                    value: "pdf"
+                  - label: "Heyzine Flipbook"
+                    value: "flipbook"
+
+              - label: "Thumbnail"
+                name: "thumbnail"
+                widget: "image"
+                required: false
+                media_folder: "/assets/e-bulletin-files"
+                public_folder: "/assets/e-bulletin-files"
+                hint: "Optional. Cover image shown on the E-Bulletin Files page."
+
+              - label: "PDF File"
+                name: "pdf"
+                widget: "file"
+                required: false
+                media_folder: "/assets/e-bulletin-files"
+                public_folder: "/assets/e-bulletin-files"
+                hint: "Upload the PDF file here if this bulletin is a PDF."
+
+              - label: "Heyzine Flipbook URL"
+                name: "flipbook_url"
+                widget: "string"
+                required: false
+                hint: "Paste the Heyzine flipbook URL if this bulletin is an interactive flipbook."
+
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                required: false            

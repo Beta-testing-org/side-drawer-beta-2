@@ -1,0 +1,128 @@
+<div class="hero"
+  style="background-image:
+    {% if site.data.site.hero_overlay %}
+      linear-gradient(
+        180deg,
+        rgba(6,40,42,.72) 0%,
+        rgba(3,64,66,.80) 55%,
+        rgba(0,204,204,.55) 100%
+      ),
+    {% endif %}
+    url('{{ site.data.site.hero_image | relative_url }}');">
+
+{% if site.data.site.hero_decoration %}
+  <svg
+    class="hero-decoration"
+    viewBox="0 0 100 100"
+    aria-hidden="true"
+  >
+    <path
+      fill="none"
+      stroke="var(--gold)"
+      stroke-width="3"
+      opacity="0.16"
+      d="M50 6l4 10 10-4 0 11 11 3-6 9 6 9-11 3 0 11-10-4-4 10-4-10-10 4 0-11-11-3 6-9-6-9 11-3 0-11 10 4z"
+    />
+
+    <circle
+      cx="50"
+      cy="50"
+      r="16"
+      fill="none"
+      stroke="var(--gold)"
+      stroke-width="3"
+      opacity="0.16"
+    />
+  </svg>
+{% endif %}
+
+<div class="hero-inner">
+
+  {% assign hero_eyebrow = site.data.site.hero_eyebrow | strip %}
+  {% assign hero_title_line1 = site.data.site.hero_title_line1 | strip %}
+  {% assign hero_title_emphasis = site.data.site.hero_title_emphasis | strip %}
+  {% assign hero_title_line2 = site.data.site.hero_title_line2 | strip %}
+  {% assign hero_description = site.data.site.hero_description | strip %}
+  {% assign hero_primary_text = site.data.site.hero_primary_text | strip %}
+  {% assign hero_primary_link = site.data.site.hero_primary_link | strip %}
+  {% assign hero_secondary_text = site.data.site.hero_secondary_text | strip %}
+  {% assign hero_secondary_link = site.data.site.hero_secondary_link | strip %}
+
+
+  {% if hero_eyebrow != "" %}
+    <span class="eyebrow">
+      <span class="dot"></span>
+      {{ hero_eyebrow }}
+    </span>
+  {% endif %}
+
+
+  {% if hero_title_line1 != "" or hero_title_emphasis != "" or hero_title_line2 != "" %}
+
+    <h1>
+
+      {% if hero_title_line1 != "" %}
+        {{ hero_title_line1 }}
+      {% endif %}
+
+      {% if hero_title_emphasis != "" %}
+        <em>{{ hero_title_emphasis }}</em>
+      {% endif %}
+
+      {% if hero_title_line2 != "" %}
+        <br>
+        {{ hero_title_line2 }}
+      {% endif %}
+
+    </h1>
+
+  {% endif %}
+
+
+  {% if hero_description != "" %}
+    <p class="lede">
+      {{ hero_description }}
+    </p>
+  {% endif %}
+
+
+  {% if hero_primary_text != "" and hero_primary_link != "" or hero_secondary_text != "" and hero_secondary_link != "" %}
+
+    <div class="hero-cta">
+
+      {% if hero_primary_text != "" and hero_primary_link != "" %}
+        <a
+          href="{{ hero_primary_link | relative_url }}"
+          class="btn btn-primary"
+        >
+          {{ hero_primary_text }}
+
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="#22270a"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      {% endif %}
+
+
+      {% if hero_secondary_text != "" and hero_secondary_link != "" %}
+        <a
+          href="{{ hero_secondary_link | relative_url }}"
+          class="btn btn-ghost"
+        >
+          {{ hero_secondary_text }}
+        </a>
+      {% endif %}
+
+    </div>
+
+  {% endif %}
+
+</div>
+
+</div>

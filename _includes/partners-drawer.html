@@ -1,0 +1,46 @@
+{% assign partner_count = site.data.partners.partners | size %}
+{% if partner_count > 0 %}
+
+<!-- Desktop: fixed edge drawer, sits in the wide margin outside .container.
+     Hover/focus expands it to reveal enlarged thumbnails + a link to the
+     full Partners page. The whole thing is one <a>, so clicking anywhere
+     on it navigates to /partners/. -->
+<a
+  class="partners-drawer"
+  href="{{ '/partners/' | relative_url }}"
+  aria-label="View our service partners and patrons"
+>
+  <span class="partners-drawer-thumbs" aria-hidden="true">
+    {% for partner in site.data.partners.partners limit: 4 %}
+      <span class="partners-drawer-thumb">
+        {% if partner.logo %}
+          <img src="{{ partner.logo | relative_url }}" alt="" loading="lazy">
+        {% else %}
+          <span class="partners-drawer-fallback">
+            {{ partner.name | slice: 0, 1 }}
+          </span>
+        {% endif %}
+      </span>
+    {% endfor %}
+  </span>
+
+  <span class="partners-drawer-label">
+    {{ site.data.partners.drawer_label | default: "Our Partners & Patrons" }}
+  </span>
+
+  <span class="partners-drawer-cta">
+    View all partners →
+  </span>
+</a>
+
+<!-- Mobile fallback: a small floating button, since a fixed side drawer
+     has no spare margin to live in on narrow screens. -->
+<a
+  class="partners-fab"
+  href="{{ '/partners/' | relative_url }}"
+  aria-label="View our service partners and patrons"
+>
+  🤝
+</a>
+
+{% endif %}
